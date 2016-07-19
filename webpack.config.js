@@ -29,7 +29,7 @@ module.exports = {
 			exclude: /node_modules/
 		}, {
 			test: /\.(eot|svg|ttf|woff|woff2)$/,
-			loader: `file?name=${PATHS.build}/fonts/[name].[ext]`
+			loader: `file?name=/fonts/[name].[ext]`
 		}]
 	},
 	devtool: 'eval-source-map',
