@@ -1,4 +1,5 @@
 const join = require('path').join;
+const resolve = require('path').resolve;
 const webpack = require('webpack');
 
 const PATHS = {
@@ -14,7 +15,7 @@ module.exports = {
 		extensions: ['', '.js']
 	},
 	output: {
-		path: PATHS.build,
+		path: process.cwd(),
 		filename: 'bundle.js'
 	},
 	module: {
@@ -34,7 +35,7 @@ module.exports = {
 	},
 	devtool: 'eval-source-map',
 	devServer: {
-		contentBase: PATHS.build,
+		contentBase: process.cwd(),
 
 		historyApiFallback: true,
 		hot: true,
