@@ -4,6 +4,7 @@ const webpack = require('webpack');
 
 const PATHS = {
 	src: join(__dirname, 'src'),
+	fonts: join(__dirname, 'fonts'),
 	build: join(__dirname, 'build')
 };
 
@@ -16,6 +17,7 @@ module.exports = {
 	},
 	output: {
 		path: process.cwd(),
+		publicPath: '/pong/',
 		filename: 'bundle.js'
 	},
 	module: {
@@ -30,6 +32,7 @@ module.exports = {
 			exclude: /node_modules/
 		}, {
 			test: /\.(eot|svg|ttf|woff|woff2)$/,
+			include : PATHS.fonts,
 			loader: `file?name=/fonts/[name].[ext]`
 		}]
 	},
