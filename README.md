@@ -1,6 +1,6 @@
 # Pong Game
 
-A basic pong game using HTML5 Canvas. 
+A basic pong game using HTML5 Canvas.
 
 ## Setup
 
@@ -11,10 +11,6 @@ A basic pong game using HTML5 Canvas.
 ##### Run
 
 `> npm start`
-
-##### Build
-
-`> npm build`
 
 ## Keys
 

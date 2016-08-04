@@ -1,6 +1,7 @@
 const join = require('path').join;
 const resolve = require('path').resolve;
 const webpack = require('webpack');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const PATHS = {
 	src: join(__dirname, 'src'),
@@ -16,7 +17,7 @@ module.exports = {
 		extensions: ['', '.js']
 	},
 	output: {
-		path: process.cwd(),
+		path: PATHS.build,
 		publicPath: '/pong/',
 		filename: 'bundle.js'
 	},
@@ -54,6 +55,7 @@ module.exports = {
 		port: process.env.PORT
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new OpenBrowserPlugin({ url: 'http://localhost:8080/webpack-dev-server/bundle'}),
 	]
 };
