@@ -1,5 +1,7 @@
-node_modules
+# Editor
 DS_Store
-build/*.js
-build/*.json
-build/fonts
+.vscode
+
+# NPM
+node_modules
+npm-debug.log
