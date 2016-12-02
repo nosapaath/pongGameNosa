@@ -13,7 +13,7 @@ function start() {
 
     // render game here
 
-    setTimeout(gameLoop, ms);
+    setTimeout(requestAnimationFrame(gameLoop), ms);
   }());
 }
 
