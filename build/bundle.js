@@ -59,7 +59,6 @@
 
 	(function gameLoop() {
 	    requestAnimationFrame(gameLoop);
-	    game.render();
 	})();
 
 /***/ },
