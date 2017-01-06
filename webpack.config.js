@@ -25,7 +25,7 @@ module.exports = {
 				include: PATHS.src
 			}, {
 				test: /\.js$/,
-				loader: 'babel',
+				loaders: ['babel', 'eslint'],
 				include: PATHS.src,
 				exclude: /node_modules/
 			}, {

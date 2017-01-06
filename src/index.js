@@ -2,19 +2,9 @@ import './styles/game.css';
 import Game from './partials/Game'
 
 // create a game instance
-const game = new Game('game');
+const game = new Game('game', 512, 256);
 
-// game speed
-const ms = 30;
-
-function start() {
-  // recursive function creates a loop
-  (function gameLoop() {
-
-    // render game here
-
-    setTimeout(requestAnimationFrame(gameLoop), ms);
-  }());
-}
-
-start();
+(function gameLoop() {
+    requestAnimationFrame(gameLoop);
+    game.render();
+})();

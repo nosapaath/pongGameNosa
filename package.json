@@ -1,18 +1,21 @@
 {
-  "name": "pong-game",
+  "name": "pong-svg",
   "version": "0.1.0",
-  "description": "pong game",
+  "description": "An SVG Pong game.",
   "license": "ISC",
-  "author": "Shawn McKay <shawn.j.mckay@gmail.com>",
+  "author": "Mandi Wise <mandi@redacademy.comt>",
   "main": "build/bundle.js",
   "scripts": {
     "start": "webpack && webpack-dev-server"
   },
   "devDependencies": {
     "babel-core": "6.11.4",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "6.2.4",
     "babel-preset-es2015": "6.9.0",
     "css-loader": "0.23.1",
+    "eslint": "^3.11.1",
+    "eslint-loader": "1.4.1",
     "file-loader": "^0.9.0",
     "open-browser-webpack-plugin": "0.0.2",
     "style-loader": "^0.13.1",
