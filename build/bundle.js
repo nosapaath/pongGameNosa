@@ -446,8 +446,14 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var Game = function Game() {
+	var Game = function Game(element, width, height) {
 		_classCallCheck(this, Game);
+
+		this.element = element;
+		this.width = width;
+		this.height = height;
+
+		// Other code goes here...
 	};
 
 	exports.default = Game;

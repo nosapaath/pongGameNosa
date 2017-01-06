@@ -1,3 +1,11 @@
 export default class Game {
-	// Game class here
+	
+	constructor(element, width, height) {
+		this.element = element;
+		this.width = width;
+		this.height = height;
+	
+		// Other code goes here...
+	}
+
 }
