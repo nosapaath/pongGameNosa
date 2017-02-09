@@ -58,6 +58,7 @@
 	var game = new _Game2.default('game', 512, 256);
 
 	(function gameLoop() {
+	    game.render();
 	    requestAnimationFrame(gameLoop);
 	})();
 
@@ -443,17 +444,30 @@
 		value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var Game = function Game(element, width, height) {
-		_classCallCheck(this, Game);
+	var Game = function () {
+		function Game(element, width, height) {
+			_classCallCheck(this, Game);
 
-		this.element = element;
-		this.width = width;
-		this.height = height;
+			this.element = element;
+			this.width = width;
+			this.height = height;
 
-		// Other code goes here...
-	};
+			// Other code goes here...
+		}
+
+		_createClass(Game, [{
+			key: "render",
+			value: function render() {
+				// More code goes here...
+			}
+		}]);
+
+		return Game;
+	}();
 
 	exports.default = Game;
 
