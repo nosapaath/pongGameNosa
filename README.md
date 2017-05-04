@@ -4,13 +4,17 @@ A basic pong game using SVGs.
 
 ## Setup
 
-**Install:**
+**Install dependencies:**
 
 `> npm i`
 
-**Run:**
+**Run locally with Webpack Dev Server:**
 
 `> npm start`
+
+**Build for production:**
+
+`> npm run build`
 
 ## Keys
 
