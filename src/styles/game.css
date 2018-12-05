@@ -84,3 +84,27 @@ h1 {
   margin-bottom: 1rem; 
   text-align: center;
 }
+
+/* svg{
+  border: 1px solid black;
+  background: #353535;
+}
+
+svg *{
+  stroke:black;
+  stroke-width:3;
+  fill: white;
+}
+
+.paddle {
+  x:10;
+  y:100;
+  width:8px;
+  height: 56px; 
+}
+
+.two {
+  x:493;
+  y:100;
+} */
+

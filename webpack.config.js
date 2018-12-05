@@ -18,8 +18,8 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.css$/,
-				include: [src],
+				test: /\.css$/, //match anything that is a .css file
+				include: [src], 
 				exclude: /node_modules/,
 				use: [
 					'style-loader',
@@ -63,6 +63,6 @@ module.exports = {
 	},
 
 	plugins: [
-		new OpenBrowserPlugin({ url: 'http://localhost:3000/' }),
+		new OpenBrowserPlugin({ url: 'http://localhost:3000/' }), //opens new tab when run webpack
 	]
 };
