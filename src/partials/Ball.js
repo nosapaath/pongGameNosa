@@ -1,11 +1,23 @@
 import { SVG_NS } from '../settings'; 
 
+
 export class Ball{
-  constructor(radius, width, height){
+  constructor(radius, width, height, space){
     this.radius = radius; 
     this.boardWidth = width; 
     this.boardHeight = height;
+    this.spaceBar = space;
     this.reset();
+    document.addEventListener('keydown', event => {
+      switch(event.key){
+        case this.spaceBar:
+        // this.x = this.x + this.speed;
+        // this.y = this.y + this.speed;
+        this.y = Math.min(0, Math.floor(Math.random() * 10 - 5));
+        this.x = Math.max(this.boardHeight, this.ballDirection * (6 - Math.abs(this.y))); 
+        break;
+      }
+    });
   }
   reset(){
     this.x = this.boardWidth/2;
@@ -22,3 +34,6 @@ export class Ball{
 }
 
 // arigato
+// storing <- o ->
+// x speed and y speed 
+// 

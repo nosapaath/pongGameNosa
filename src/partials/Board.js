@@ -11,7 +11,6 @@ export class Board {
     rect.setAttributeNS(null,'height',this.height);
     rect.setAttributeNS(null,'fill', 'black');
     
-
     let line = document.createElementNS(SVG_NS,'line');
     line.setAttributeNS(null,'x1',(this.width/2));
     line.setAttributeNS(null,'x2',(this.width/2));

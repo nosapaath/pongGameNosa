@@ -13,8 +13,11 @@ export default class Game {
     this.paddleHeight = 56;
 		this.boardGap = 10;
 		this.ballRadius = 8;
+		this.speed = 10;
+		this.ballDirection = 1;
+
 		
-		this.ball = new Ball (this.ballRadius, this.width, this.height);
+		this.ball = new Ball (this.ballRadius, this.width, this.height, KEYS.spaceBar);
 		
 		this.gameElement = document.getElementById(this.element);
 
@@ -23,9 +26,8 @@ export default class Game {
 		this.paddle1 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, this.boardGap, ((this.height - this.paddleHeight)/2), KEYS.a,KEYS.z);
 
     this.paddle2 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, (this.width - this.paddleWidth - this.boardGap), ((this.height - this.paddleHeight)/2), KEYS.UP,KEYS.DOWN);
-		// Other code goes here...
 
-		
+	
 	}
 
 	render() {
@@ -42,11 +44,4 @@ export default class Game {
 		this.ball.render(svg);
 	}
 
-}
-
-// const board = new Board(width, height);
-// 		const ball = new Ball(256,128);//starting position of ball always middle. 
-// 		const paddle1 = new Paddle(controlUp, controlDown, x, y, width, height); 
-// 		const paddle2 = new Paddle(controlUp, controlDown, x, y, width, height);
-		
-// 		
+}	
