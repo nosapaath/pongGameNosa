@@ -28,6 +28,14 @@ export class Paddle {
     
   }
 
+  coordinates(){
+    const leftX = this.x; 
+    const rightX =this.x + this.width;
+    const topY = this.y;
+    const bottomY = this.y + this.height;
+    return [leftX, rightX, topY, bottomY];
+  }
+
   render(svg){
     let rect = document.createElementNS(SVG_NS, 'rect');
     rect.setAttributeNS(null,'width',this.width);

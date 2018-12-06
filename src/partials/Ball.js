@@ -26,11 +26,33 @@ export class Ball{
 
     if(hitTop || hitBottom){
       this.vy *= -1;
-    } else if (hitLeft || hitRight){
-      this.vx *= -1;
+    } 
+    // else if (hitLeft || hitRight){
+      // this.vx *= -1;
+    // }
+  }
+  paddleCollision(paddle1,paddle2){
+    if(this.vx > 0){
+      //bounce
+    } else {
+      //bounce
     }
   }
 
+  checkScore(paddle1,paddle2){
+    const hitLeft = (this.x - this.radius <= 0); 
+    const hitRight = (this.x + this.radius >= this.boardWidth); 
+
+    if(hitLeft){
+      paddle2.score += 1;
+      this.reset();
+      this.direction *= -1;
+    } else if(hitRight){
+      paddle1.score += 1;
+      this.reset();
+      this.direction *= -1;
+    }
+  }
   reset(){
     this.x = this.boardWidth/2;
     this.y = this.boardHeight/2;
@@ -40,17 +62,19 @@ export class Ball{
     }
     this.vx = this.direction * (6 - Math.abs(this.vy));
   }
-  render(svg){
+  render(svg, paddle1, paddle2){
     let circle = document.createElementNS(SVG_NS, 'circle'); 
     circle.setAttributeNS(null, 'r', this.radius);
     circle.setAttributeNS(null, 'cx', this.x);
     circle.setAttributeNS(null, 'cy', this.y);
     circle.setAttributeNS(null,'fill','white');
     this.wallCollision();
+    this.checkScore(paddle1, paddle2);
     this.x = this.x + this.vx; 
     this.y = this.y + this.vy;
 
-    
+    this.paddleCollision(paddle1, paddle2);
+
     svg.appendChild(circle)
   }
 }
