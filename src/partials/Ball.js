@@ -10,13 +10,13 @@ export class Ball{
     this.direction = 1;
 
     this.reset();
-    document.addEventListener('keydown', event => {
-      switch(event.key){
-        case this.spaceBar:
-        this.reset();
-        break;
-      }
-    });
+    // document.addEventListener('keydown', event => {
+    //   switch(event.key){
+    //     case this.spaceBar:
+    //     this.reset();
+    //     break;
+    //   }
+    // });
   }
   wallCollision(){
     const hitLeft = (this.x - this.radius <= 0); 

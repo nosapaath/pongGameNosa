@@ -9,6 +9,9 @@ export default class Game {
 		this.element = element;
 		this.width = width;
 		this.height = height; 
+
+		this.pause = false;
+
 		this.paddleWidth = 8 ;
     this.paddleHeight = 56;
 		this.boardGap = 10;
@@ -25,12 +28,23 @@ export default class Game {
 		
 		this.paddle1 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, this.boardGap, ((this.height - this.paddleHeight)/2), KEYS.a,KEYS.z);
 
-    this.paddle2 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, (this.width - this.paddleWidth - this.boardGap), ((this.height - this.paddleHeight)/2), KEYS.UP,KEYS.DOWN);
+		this.paddle2 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, (this.width - this.paddleWidth - this.boardGap), ((this.height - this.paddleHeight)/2), KEYS.UP,KEYS.DOWN);
+		
+		document.addEventListener('keydown', event => {
+      switch(event.key){
+        case KEYS.spaceBar:
+				this.pause = !this.pause;
+        break;
+      }
+    });
 
 	
 	}
 
 	render() {
+		if(this.pause){
+			return;
+		}
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS,'svg');
 		svg.setAttributeNS(null, 'width', this.width); 
