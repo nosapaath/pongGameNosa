@@ -19,8 +19,8 @@ export class Ball{
     // });
   }
   wallCollision(){
-    const hitLeft = (this.x - this.radius <= 0); 
-    const hitRight = (this.x + this.radius >= this.boardWidth); 
+    // const hitLeft = (this.x - this.radius <= 0); 
+    // const hitRight = (this.x + this.radius >= this.boardWidth); 
     const hitTop = (this.y - this.radius <= 0);
     const hitBottom = (this.y + this.radius >= this.boardHeight ); 
 
@@ -33,9 +33,21 @@ export class Ball{
   }
   paddleCollision(paddle1,paddle2){
     if(this.vx > 0){
+      const [left, right, top, bottom] = paddle2.coordinates();
+      const hit = (this.x + this.radius >= left) && (this.y <= bottom) && (this.y >= top);
+      
+      if(hit){
+        this.vx *= -1;
+      }
       //bounce
     } else {
+      const [left, right, top, bottom] = paddle1.coordinates();
+      const hit = (this.x - this.radius <= right) && (this.y <= bottom) && (this.y >= top);
       //bounce
+
+      if(hit){
+        this.vx *= -1;
+      }
     }
   }
 
