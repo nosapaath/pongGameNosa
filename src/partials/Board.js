@@ -17,7 +17,7 @@ export class Board {
     line.setAttributeNS(null,'y1',0);
     line.setAttributeNS(null,'y2',this.height);
     line.setAttributeNS(null,'stroke','white');
-    line.setAttributeNS(null,'stroke-dasharray','20, 15');
+    line.setAttributeNS(null,'stroke-dasharray','5, 10');
     line.setAttributeNS(null,'stroke-width','4');
 
     

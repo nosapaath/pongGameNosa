@@ -9,7 +9,7 @@ export class Paddle {
     this.height = height; 
     this.up = up; 
     this.down = down;
-    this.speed = 10; 
+    this.speed = 40; 
     this.score = 0;
 
 
@@ -21,19 +21,12 @@ export class Paddle {
         break;
         case this.down:
         this.y = Math.min(this.boardHeight-this.height,this.y + this.speed);
-        this.color = 'red';  
+        this.color = 'red'; 
         break;
       }
     });
     
   }
-  increaseScore(){
-    this.score += 1;
-  }
-  getScore(){
-    return this.score;
-  }
-
   coordinates(){
     const leftX = this.x; 
     const rightX =this.x + this.width;
@@ -42,13 +35,29 @@ export class Paddle {
     return [leftX, rightX, topY, bottomY];
   }
 
-  render(svg){
+  increaseScore(){
+    this.score++;
+  }
+
+  checkWinner(otra){
+    while(this.score === 5){
+      this.score = 0; 
+      otra.score = 0;
+    }
+  }
+
+  getScore(){
+    return this.score;
+  }
+
+  render(svg, otra){
     let rect = document.createElementNS(SVG_NS, 'rect');
     rect.setAttributeNS(null,'width',this.width);
     rect.setAttributeNS(null,'height',this.height);
     rect.setAttributeNS(null,'fill', this.color);
     rect.setAttributeNS(null,'x', this.x);
     rect.setAttributeNS(null,'y', this.y);
+    this.checkWinner(otra); //current solution to updating score back to 0 when a limit score is reached
     svg.appendChild(rect);
   }
 }

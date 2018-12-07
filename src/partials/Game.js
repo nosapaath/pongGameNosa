@@ -3,6 +3,8 @@ import { Board } from './Board';
 import { Paddle } from './Paddle';
 import { Ball } from './Ball';
 import { Score } from './Score';
+import { Restart } from './Restart';
+
 
 export default class Game {
 
@@ -19,7 +21,7 @@ export default class Game {
 		this.ballRadius = 8;
 		this.speed = 10;
 		this.ballDirection = 1;
-		
+
 		this.scoreFontSize = 38;
 
 		
@@ -33,16 +35,19 @@ export default class Game {
 
 		this.paddle2 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, (this.width - this.paddleWidth - this.boardGap), ((this.height - this.paddleHeight)/2), KEYS.UP,KEYS.DOWN);
 		
-		this.score1 = new Score((this.width/4),30, this.scoreFontSize); //this.width/2 - 50
-		this.score2 = new Score((3*(this.width/4)),30, this.scoreFontSize); //this.width/2 + 25
+		this.score1 = new Score((this.width/4),30, this.scoreFontSize);
+		this.score2 = new Score((3*(this.width/4)),30, this.scoreFontSize);
 		document.addEventListener('keydown', event => {
       switch(event.key){
         case KEYS.spaceBar:
 				this.pause = !this.pause;
-        break;
+				break;
       }
     });
 
+		this.restart = new Restart('0', (this.height/2), (this.scoreFontSize));
+		this.restartSong = new Audio('../public/sounds/smb_stage_clear.wav');
+		
 	
 	}
 
@@ -58,14 +63,16 @@ export default class Game {
 		this.gameElement.appendChild(svg);
 		
 		this.board.render(svg);
-		this.paddle1.render(svg);
-		this.paddle2.render(svg);
+		this.paddle1.render(svg, this.paddle2);
+		this.paddle2.render(svg, this.paddle1);
 		this.ball.render(svg, this.paddle1, this.paddle2);
-
 		this.score1.render(svg, this.paddle1.getScore());
 		this.score2.render(svg, this.paddle2.getScore());
-
 		
+		if(this.paddle1.score === 5 || this.paddle2.score === 5  ){
+			this.pause = true;
+			this.restart.render(svg, this.paddle1, this.paddle2)
+			this.restartSong.play();
+		}
 	}
-
 }	
