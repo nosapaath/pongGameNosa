@@ -27,6 +27,12 @@ export class Paddle {
     });
     
   }
+  increaseScore(){
+    this.score += 1;
+  }
+  getScore(){
+    return this.score;
+  }
 
   coordinates(){
     const leftX = this.x; 
@@ -40,7 +46,7 @@ export class Paddle {
     let rect = document.createElementNS(SVG_NS, 'rect');
     rect.setAttributeNS(null,'width',this.width);
     rect.setAttributeNS(null,'height',this.height);
-    rect.setAttributeNS(null,'fill', this.color );
+    rect.setAttributeNS(null,'fill', this.color);
     rect.setAttributeNS(null,'x', this.x);
     rect.setAttributeNS(null,'y', this.y);
     svg.appendChild(rect);
