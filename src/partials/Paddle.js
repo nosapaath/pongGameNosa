@@ -9,7 +9,7 @@ export class Paddle {
     this.height = height; 
     this.up = up; 
     this.down = down;
-    this.speed = 40; 
+    this.speed = 50; 
     this.score = 0;
 
 
@@ -37,6 +37,14 @@ export class Paddle {
 
   increaseScore(){
     this.score++;
+  }
+
+  decreaseScore(){
+    if(this.score > 0){
+    this.score--;
+    } else if(this.score === 0){
+      this.score 
+    }
   }
 
   checkWinner(otra){

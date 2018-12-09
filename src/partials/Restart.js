@@ -14,7 +14,7 @@ export class Restart{
     text.setAttributeNS(null,'y',this.y);
     text.setAttributeNS(null,'fill', 'white');
     text.setAttributeNS(null, 'font-size', this.size);
-    text.textContent = `spacebar  to Restart`;
+    text.textContent = 'spacebar to Restart';
     svg.appendChild(text);
 
   }

@@ -4,6 +4,7 @@ import { Paddle } from './Paddle';
 import { Ball } from './Ball';
 import { Score } from './Score';
 import { Restart } from './Restart';
+import { Distraction } from './Distraction';
 
 
 export default class Game {
@@ -13,10 +14,11 @@ export default class Game {
 		this.width = width;
 		this.height = height; 
 
+		this.showSurprise = true;
 		this.pause = false;
 
 		this.paddleWidth = 8 ;
-    this.paddleHeight = 56;
+    this.paddleHeight = 40;
 		this.boardGap = 10;
 		this.ballRadius = 8;
 		this.speed = 10;
@@ -26,7 +28,11 @@ export default class Game {
 
 		
 		this.ball = new Ball (this.ballRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball2 = new Distraction (this.ballRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball3 = new Distraction (this.ballRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball4 = new Distraction (this.ballRadius, this.width, this.height, KEYS.spaceBar);
 		
+
 		this.gameElement = document.getElementById(this.element);
 
 		this.board = new Board(this.width, this.height);
@@ -37,6 +43,7 @@ export default class Game {
 		
 		this.score1 = new Score((this.width/4),30, this.scoreFontSize);
 		this.score2 = new Score((3*(this.width/4)),30, this.scoreFontSize);
+
 		document.addEventListener('keydown', event => {
       switch(event.key){
         case KEYS.spaceBar:
@@ -54,7 +61,9 @@ export default class Game {
 	render() {
 		if(this.pause){
 			return;
+			
 		}
+		
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS,'svg');
 		svg.setAttributeNS(null, 'width', this.width); 
@@ -70,9 +79,19 @@ export default class Game {
 		this.score2.render(svg, this.paddle2.getScore());
 		
 		if(this.paddle1.score === 5 || this.paddle2.score === 5  ){
-			this.pause = true;
-			this.restart.render(svg, this.paddle1, this.paddle2)
 			this.restartSong.play();
+			this.restart.render(svg, this.paddle1, this.paddle2);
+			this.pause = true;
+		}
+
+		if(this.paddle1.score > 2 || this.paddle2.score > 2){
+			if (this.showSurprise) {
+				this.ball2.surprise.play();
+			}
+			this.ball2.render(svg, this.paddle1, this.paddle2);
+			this.ball3.render(svg, this.paddle1, this.paddle2);
+			this.ball4.render(svg, this.paddle1, this.paddle2);
+			this.showSurprise = false;
 		}
 	}
 }	
