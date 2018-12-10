@@ -1,6 +1,6 @@
 # Pong Game
 
-A basic pong game using SVGs.
+A fast-food inspired pong game using javascript to create SVGs. Using Object Oriented Programming, I used classes to create this game. 
 
 ## Setup
 
