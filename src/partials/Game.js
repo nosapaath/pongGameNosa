@@ -1,4 +1,4 @@
-import { SVG_NS, KEYS} from '../settings';
+import { SVG_NS, KEYS, GAME} from '../settings';
 import { Board } from './Board';
 import { Paddle } from './Paddle';
 import { Ball } from './Ball';
@@ -14,37 +14,19 @@ export default class Game {
 		this.element = element;
 		this.width = width;
 		this.height = height; 
-
 		this.showSurprise = true;
 		this.pause = false;
-
-		this.paddleWidth = 8 ;
-    this.paddleHeight = 65;
-		this.boardGap = 10;
-		this.ballRadius = 15;
-		this.distractionRadius= 10;
-		this.speed = 10;
-		this.ballDirection = 1;
-
-		this.scoreFontSize = 38;
-
-		
-		this.ball = new Ball (this.ballRadius, this.width, this.height, KEYS.spaceBar);
-		this.ball2 = new Distraction (this.distractionRadius, this.width, this.height, KEYS.spaceBar);
-		this.ball3 = new Distraction (this.distractionRadius, this.width, this.height, KEYS.spaceBar);
-		this.ball4 = new Distraction (this.distractionRadius, this.width, this.height, KEYS.spaceBar);
-		
-
 		this.gameElement = document.getElementById(this.element);
 
+		this.ball = new Ball (GAME.ballRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball2 = new Distraction (GAME.distractionRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball3 = new Distraction (GAME.distractionRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball4 = new Distraction (GAME.distractionRadius, this.width, this.height, KEYS.spaceBar);
 		this.board = new Board(this.width, this.height);
-		
-		this.paddle1 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, this.boardGap, ((this.height - this.paddleHeight)/2), KEYS.a, KEYS.z);
-
-		this.paddle2 = new Paddle(this.height,this.paddleWidth, this.paddleHeight, (this.width - this.paddleWidth - this.boardGap), ((this.height - this.paddleHeight)/2), KEYS.UP,KEYS.DOWN);
-		
-		this.score1 = new Score((this.width/4),30, this.scoreFontSize);
-		this.score2 = new Score((3*(this.width/4)),30, this.scoreFontSize);
+		this.paddle1 = new Paddle(this.height,GAME.paddleWidth, GAME.paddleHeight, GAME.boardGap, ((this.height - GAME.paddleHeight)/2), KEYS.a, KEYS.z);
+		this.paddle2 = new Paddle(this.height,GAME.paddleWidth, GAME.paddleHeight, (this.width - GAME.paddleWidth - GAME.boardGap), ((this.height - GAME.paddleHeight)/2), KEYS.UP,KEYS.DOWN);
+		this.score1 = new Score((this.width/4),30, GAME.scoreFontSize);
+		this.score2 = new Score((3*(this.width/4)),30, GAME.scoreFontSize);
 
 		document.addEventListener('keydown', event => {
       switch(event.key){
@@ -54,8 +36,8 @@ export default class Game {
 			}
     });
 
-		this.restart = new Restart('0', (this.height/2), (this.scoreFontSize));
-		this.restartSong = new Audio('../public/sounds/smb_stage_clear.wav');
+		this.restart = new Restart('0', (this.height/2), (GAME.scoreFontSize));
+		this.restartSong = new Audio('../public/sounds/ComeAgain.mp3');
 		this.gameSong = new Audio('../public/sounds/FastSong.mp3');
 		
 		
@@ -89,8 +71,8 @@ export default class Game {
 			this.restartSong.play();
 			this.restart.render(svg, this.paddle1, this.paddle2);
 			this.pause = true;
-			this.paddle1.height = this.paddleHeight; 
-			this.paddle2.height = this.paddleHeight; 
+			this.paddle1.height = GAME.paddleHeight; 
+			this.paddle2.height = GAME.paddleHeight; 
 		}
 
 		if(this.paddle1.score > 2 || this.paddle2.score > 2){

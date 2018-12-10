@@ -69,10 +69,3 @@ export class Distraction{
     svg.appendChild(circle)
   }
 }
-
-// class snow extends Ball{
-//   constructor(radius, width, height){
-//     super(radius, width, height);
-//     let circle = document.createElementNS(SVG_NS, 'circle')
-//   }
-// }
