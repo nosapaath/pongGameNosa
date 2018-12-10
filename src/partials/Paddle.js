@@ -11,17 +11,18 @@ export class Paddle {
     this.down = down;
     this.speed = 50; 
     this.score = 0;
+    this.slow = 0;
 
 
     document.addEventListener('keydown', event => {
       switch(event.key){
         case this.up:
-        this.y = Math.max(0, this.y - this.speed);
-        this.color = 'blue'; 
+        this.y = Math.max(0, this.y - this.speed - this.slow);
+        this.color = '#fc0'; 
         break;
         case this.down:
-        this.y = Math.min(this.boardHeight-this.height,this.y + this.speed);
-        this.color = 'red'; 
+        this.y = Math.min(this.boardHeight-this.height,this.y + this.speed - this.slow);
+        this.color = '#fc0'; 
         break;
       }
     });
@@ -39,16 +40,13 @@ export class Paddle {
     this.score++;
   }
 
-  decreaseScore(){
-    if(this.score > 0){
-    this.score--;
-    } else if(this.score === 0){
-      this.score 
-    }
+  slowDown(){
+    this.height-= 1;
+    this.slow++ ;
   }
 
   checkWinner(otra){
-    while(this.score === 5){
+    while(this.score === 10){
       this.score = 0; 
       otra.score = 0;
     }

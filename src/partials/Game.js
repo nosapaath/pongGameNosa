@@ -9,7 +9,8 @@ import { Distraction } from './Distraction';
 
 export default class Game {
 
-	constructor(element, width, height) {
+	constructor(element, width, height, song) {
+		this.song = song
 		this.element = element;
 		this.width = width;
 		this.height = height; 
@@ -18,9 +19,10 @@ export default class Game {
 		this.pause = false;
 
 		this.paddleWidth = 8 ;
-    this.paddleHeight = 40;
+    this.paddleHeight = 65;
 		this.boardGap = 10;
-		this.ballRadius = 8;
+		this.ballRadius = 15;
+		this.distractionRadius= 10;
 		this.speed = 10;
 		this.ballDirection = 1;
 
@@ -28,9 +30,9 @@ export default class Game {
 
 		
 		this.ball = new Ball (this.ballRadius, this.width, this.height, KEYS.spaceBar);
-		this.ball2 = new Distraction (this.ballRadius, this.width, this.height, KEYS.spaceBar);
-		this.ball3 = new Distraction (this.ballRadius, this.width, this.height, KEYS.spaceBar);
-		this.ball4 = new Distraction (this.ballRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball2 = new Distraction (this.distractionRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball3 = new Distraction (this.distractionRadius, this.width, this.height, KEYS.spaceBar);
+		this.ball4 = new Distraction (this.distractionRadius, this.width, this.height, KEYS.spaceBar);
 		
 
 		this.gameElement = document.getElementById(this.element);
@@ -49,20 +51,25 @@ export default class Game {
         case KEYS.spaceBar:
 				this.pause = !this.pause;
 				break;
-      }
+			}
     });
 
 		this.restart = new Restart('0', (this.height/2), (this.scoreFontSize));
 		this.restartSong = new Audio('../public/sounds/smb_stage_clear.wav');
+		this.gameSong = new Audio('../public/sounds/FastSong.mp3');
 		
-	
+		
+		
 	}
+
 
 	render() {
 		if(this.pause){
+			this.gameSong.pause();
 			return;
-			
-		}
+		} 
+		
+		this.gameSong.play();
 		
 		this.gameElement.innerHTML = '';
 		let svg = document.createElementNS(SVG_NS,'svg');
@@ -78,10 +85,12 @@ export default class Game {
 		this.score1.render(svg, this.paddle1.getScore());
 		this.score2.render(svg, this.paddle2.getScore());
 		
-		if(this.paddle1.score === 5 || this.paddle2.score === 5  ){
+		if(this.paddle1.score === 10 || this.paddle2.score === 10  ){
 			this.restartSong.play();
 			this.restart.render(svg, this.paddle1, this.paddle2);
 			this.pause = true;
+			this.paddle1.height = this.paddleHeight; 
+			this.paddle2.height = this.paddleHeight; 
 		}
 
 		if(this.paddle1.score > 2 || this.paddle2.score > 2){

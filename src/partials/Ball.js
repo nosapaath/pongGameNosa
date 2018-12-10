@@ -26,6 +26,7 @@ export class Ball{
       const [left,, top, bottom] = paddle2.coordinates();
       const hit = (this.x + this.radius >= left) && (this.y <= bottom) && (this.y >= top);
       if(hit){
+        this.vx+= 1;
         this.vx *= -1;
         this.ping.play(); 
         //sound added 
@@ -36,6 +37,7 @@ export class Ball{
       const hit = (this.x - this.radius <= right) && (this.y <= bottom) && (this.y >= top);
       //bounce
       if(hit){
+        this.vx-= 1;
         this.vx *= -1;
         this.pong.play();//sound added 
       }
@@ -72,6 +74,9 @@ export class Ball{
     circle.setAttributeNS(null, 'cx', this.x);
     circle.setAttributeNS(null, 'cy', this.y);
     circle.setAttributeNS(null,'fill','white');
+    circle.setAttributeNS(null,'stroke','#fc0');
+    circle.setAttributeNS(null,'stroke-width','2');
+
     this.wallCollision();
     this.checkScore(paddle1, paddle2);
     this.x = this.x + this.vx; 
@@ -79,7 +84,7 @@ export class Ball{
 
     this.paddleCollision(paddle1, paddle2);
 
-    svg.appendChild(circle)
+    svg.appendChild(circle);
   }
 }
 

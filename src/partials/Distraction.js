@@ -6,10 +6,8 @@ export class Distraction{
     this.boardWidth = width; 
     this.boardHeight = height;
     this.spaceBar = space;
-    this.direction = 1;
-    this.pong = new Audio('../public/sounds/smb_bump.wav');
-    this.ping = new Audio('../public/sounds/smb_bump.wav');
-    this.surprise = new Audio('../public/sounds/surprise.wav');
+    this.direction = 1; 
+    this.surprise = new Audio('../public/sounds/fries.wav');
     this.resetBack();
     
   }
@@ -32,7 +30,7 @@ export class Distraction{
       const [left,, top, bottom] = paddle2.coordinates();
       const hit = (this.x + this.radius >= left) && (this.y <= bottom) && (this.y >= top);
       if(hit){
-        paddle2.decreaseScore();
+        paddle2.slowDown();
         //sound added 
       }
       //bounce
@@ -41,7 +39,7 @@ export class Distraction{
       const hit = (this.x - this.radius <= right) && (this.y <= bottom) && (this.y >= top);
       //bounce
       if(hit){
-        paddle1.decreaseScore();
+        paddle1.slowDown();
         // this.pong.play();//sound added 
       }
     }
@@ -53,9 +51,9 @@ export class Distraction{
     this.y = this.boardHeight/2;
     this.vy = 0;
     while (this.vy === 0){
-      this.vy = Math.floor(Math.random()* 10 - 1);
+      this.vy = Math.floor(Math.random()* 10 - 5);
     }
-    this.vx = this.direction * (5 - Math.abs(this.vy));
+    this.vx = this.direction * (6 - Math.abs(this.vy));
   }
 
   render(svg, paddle1, paddle2){
@@ -63,7 +61,7 @@ export class Distraction{
     circle.setAttributeNS(null, 'r', this.radius);
     circle.setAttributeNS(null, 'cx', this.x);
     circle.setAttributeNS(null, 'cy', this.y);
-    circle.setAttributeNS(null,'fill','red');
+    circle.setAttributeNS(null,'fill','green');
     this.wallSurprise();
     this.paddleKill(paddle1, paddle2);
     this.x = this.x + this.vx; 
