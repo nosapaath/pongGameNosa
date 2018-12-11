@@ -1,6 +1,9 @@
-# Pong Game
+# Who Pays For The Meal? McPongGame
 
-A fast-food inspired pong game using javascript to create SVGs. Using Object Oriented Programming, I used classes, with methods and webpack to run this game. 
+Can't decide who pays for the next meal. Challenge your buddy on this game and if they lose they will have to get you that McNuggets or if you are feeling generous and want to pay, collect all the lettuce balls and watch your paddle disappear and your buddy will win easier. 
+
+# McPongGame Description
+A fast-food inspired pong game using javascript to create SVGs. Using Object Oriented Programming, I used classes, with methods and webpack to run this game.  
 
 - The more you hit the ball the faster the ball will move on the x axis.
 - Your goal is to score 10 points to win. 
