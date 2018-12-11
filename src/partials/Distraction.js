@@ -31,16 +31,12 @@ export class Distraction{
       const hit = (this.x + this.radius >= left) && (this.y <= bottom) && (this.y >= top);
       if(hit){
         paddle2.slowDown();
-        //sound added 
       }
-      //bounce
     } else {
       const [, right, top, bottom] = paddle1.coordinates();
       const hit = (this.x - this.radius <= right) && (this.y <= bottom) && (this.y >= top);
-      //bounce
       if(hit){
         paddle1.slowDown();
-        // this.pong.play();//sound added 
       }
     }
   }

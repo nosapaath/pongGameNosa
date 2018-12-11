@@ -16,7 +16,6 @@ export const GAME = {
   boardGap : 10,
 	ballRadius : 15,
 	distractionRadius : 10,
-	// speed : 10,
 	ballDirection : 1,
   scoreFontSize : 38,
   speed : 50,
