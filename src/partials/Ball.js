@@ -7,8 +7,8 @@ export class Ball{
     this.boardHeight = height;
     this.spaceBar = space;
     this.direction = 1;
-    this.pong = new Audio('/public/sounds/smb_bump.wav');
-    this.ping = new Audio('/public/sounds/smb_bump.wav');
+    this.pong = new Audio('public/sounds/smb_bump.wav');
+    this.ping = new Audio('public/sounds/smb_bump.wav');
     this.reset();
   }
   
