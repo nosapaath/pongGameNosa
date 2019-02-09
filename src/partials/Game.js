@@ -37,8 +37,8 @@ export default class Game {
     });
 
 		this.restart = new Restart('0', (this.height/2), (GAME.scoreFontSize));
-		this.restartSong = new Audio('../public/sounds/ComeAgain.mp3');
-		this.gameSong = new Audio('../public/sounds/FastSong.mp3');
+		this.restartSong = new Audio('/public/sounds/ComeAgain.mp3');
+		this.gameSong = new Audio('/public/sounds/FastSong.mp3');
 		
 		
 		
