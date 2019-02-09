@@ -7,7 +7,7 @@ export class Distraction{
     this.boardHeight = height;
     this.spaceBar = space;
     this.direction = 1; 
-    this.surprise = new Audio('/public/sounds/fries.wav');
+    this.surprise = new Audio('public/sounds/fries.wav');
     this.resetBack();
     
   }
